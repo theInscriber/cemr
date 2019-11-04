@@ -1,0 +1,7 @@
+--root{
+    --info-color: rgb(255, 147, 2);
+}
+
+.card-info{
+    background: var(--info-color)
+}

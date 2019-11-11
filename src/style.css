@@ -1,7 +1,42 @@
---root{
-    --info-color: rgb(255, 147, 2);
+:root{
+    --info-color-font: rgb(255, 147, 2);
+    --info-color-bg: #faebcc
 }
 
 .card-info{
-    background: var(--info-color)
+    background: var(--info-color-bg) !important;
+    color: var(--info-color-font) !important;
+    padding: 1em;
+}
+
+.journey {
+    position: relative;
+    top: 90%;
+}
+
+.journey-inner {
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 30% !important
+}
+
+.journey-container > .MuiDrawer-paperAnchorBottom {
+    top: 10% !important;
+    right: 70% !important;
+}
+
+.card{
+    overflow: hidden;
+}
+
+.card-header {
+    padding: .75rem 1.25rem
+}
+
+.card-body {
+    padding: 1.25rem
+}
+
+.card-footer {
+    padding: .75rem 1.25rem
 }

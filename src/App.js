@@ -2,9 +2,11 @@ import React from 'react'
 import { DataQuery } from '@dhis2/app-runtime'
 import { 
         Card, MenuList, MenuItem, FormControl, InputField, Button, 
-        Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, TableFoot, Content
+        Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, TableFoot, Modal,ButtonStrip, TabBar, Tab
     } 
     from '@dhis2/ui-core'
+
+// import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer'
 import Grid from '@material-ui/core/Grid';
@@ -13,6 +15,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { useState } from 'react'
@@ -20,6 +23,30 @@ import { useState } from 'react'
 import i18n from '@dhis2/d2-i18n'
 
 import './style.css'
+
+// const useStyles = makeStyles(theme => ({
+//     card: {
+//       maxWidth: 345,
+//     },
+//     media: {
+//       height: 0,
+//       paddingTop: '56.25%', // 16:9
+//     },
+//     expand: {
+//       transform: 'rotate(0deg)',
+//       marginLeft: 'auto',
+//       transition: theme.transitions.create('transform', {
+//         duration: theme.transitions.duration.shortest,
+//       }),
+//     },
+//     expandOpen: {
+//       transform: 'rotate(180deg)',
+//     },
+//     avatar: {
+//       backgroundColor: red[500],
+//     },
+//   }));
+  
 
 const query = {
     me: {
@@ -35,7 +62,7 @@ const query = {
 }
 
 const MyApp = () => {
-
+    // const classes = useStyles();
     const [value, setValue] = useState("")
     
     const dispalyIndicators = (  {indicators: {indicators}}) => { 
@@ -87,6 +114,32 @@ const MyApp = () => {
                         </MenuList> */}
 
                         <Card className="card">
+                            {/* <Modal open small>
+                                <Modal.Title>
+                                    This is a small modal with title, content and primary action
+                                </Modal.Title>
+                                <Modal.Content>
+                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                </Modal.Content>
+                                <Modal.Actions>
+                                    <ButtonStrip end>
+                                        <Button
+                                            onClick={function(){return alert(something)}}
+                                            secondary
+                                            type="button"
+                                        >
+                                            Secondary action
+                                        </Button>
+                                        <Button
+                                            onClick={function(){return alert(something)}}
+                                            primary
+                                            type="button"
+                                        >
+                                            Primary action
+                                        </Button>
+                                    </ButtonStrip>
+                                </Modal.Actions>
+                            </Modal> */}
                                 <CardHeader
                                     title="Word of the Day"
                                     subheader="September 14, 2016"
@@ -526,6 +579,42 @@ const MyApp = () => {
                                 </Button>
                             </div>
                         </Drawer>
+                    </Container>
+
+                    <Container>
+                        <div className=""></div>
+                        <CardHeader
+                            avatar={
+                                <Avatar aria-label="recipe">
+                                    PS
+                                </Avatar>
+                            }
+                            title="Paul Sembereka"
+                            subheader="September 14, 2016"
+                        />
+                        <div
+                            style={{
+                                maxWidth: 700
+                            }}
+                            >
+                            <TabBar fixed>
+                                <Tab>
+                                Tab A
+                                </Tab>
+                                <Tab>
+                                Tab B
+                                </Tab>
+                                <Tab selected>
+                                Tab C
+                                </Tab>
+                                <Tab>
+                                Tab D
+                                </Tab>
+                            </TabBar>
+                            <p>
+                                Max-width of this container is 700 px
+                            </p>
+                            </div>
                     </Container>
 
                             

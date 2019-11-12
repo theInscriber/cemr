@@ -6,7 +6,6 @@
 .card-info{
     background: var(--info-color-bg) !important;
     color: var(--info-color-font) !important;
-    padding: 1em;
 }
 
 .journey {

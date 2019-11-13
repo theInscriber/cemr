@@ -5,22 +5,30 @@ const { useRouteMatch } = reactRouterDom
 
 import Visit from './visit';
 import CardButton from '../card-button';
+import ModalForm from '../modal-form';
 
 const Visits = () => {
-    let match = useRouteMatch("/visits");
+    const [isFormOpen, setIsFormOpen] = useState(false) 
 
-    console.log(match)
+    const handleAddVisit = (value) => {
+        setIsFormOpen(value)
+    }
+
+    const handleClickAway = (value) => {
+        setIsFormOpen(false)
+    }
 
     return (
         <>  
             <div style={{width: '80%', margin: 'auto'}}>
-                <CardButton/>
+                <CardButton onClick={handleAddVisit}/>
                 <Visit/>
                 <Visit/>
                 <Visit/>
                 <Visit/>
                 <Visit/>
             </div>
+            <ModalForm isOpen={isFormOpen} setIsModalOpen={handleClickAway}/>
         </>
     )
 } 

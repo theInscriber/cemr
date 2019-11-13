@@ -15,23 +15,12 @@ import Search from './components/search'
 
 // import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Drawer from '@material-ui/core/Drawer'
-
-import Typography from '@material-ui/core/Typography'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Avatar from '@material-ui/core/Avatar';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
-import { useState } from 'react'
 
 import i18n from '@dhis2/d2-i18n'
 
 import './style.css'
 import Visits from './components/visits';
+import PersonInfo from './components/person-info';
 
 const query = {
     me: {
@@ -103,43 +92,13 @@ const MyApp = () => {
 
                                 <div className="sidebar">
                                     <Container>
-                                        <div className=""></div>
-                                        <div
-                                            >
-                                            <CardHeader
-                                                avatar={
-                                                    <Avatar aria-label="recipe">
-                                                        PS
-                                                    </Avatar>
-                                                }
-                                                title="Paul Sembereka"
-                                                subheader="September 14, 2016"
-                                            />
-                                            <TabBar fixed>
-                                                <Tab>
-                                                Tab A
-                                                </Tab>
-                                                <Tab>
-                                                Tab B
-                                                </Tab>
-                                                <Tab selected>
-                                                Tab C
-                                                </Tab>
-                                                <Tab>
-                                                Tab D
-                                                </Tab>
-                                            </TabBar>
-                                            <p>
-                                                Max-width of this container is 700 px
-                                            </p>
-                                            </div>
+                                        <PersonInfo/>
                                     </Container>
-
                                 </div>
                                 
                                 
 
-                                <div
+                                {/* <div
                                     style={{
                                         width: '60%',
                                     }}
@@ -169,9 +128,9 @@ const MyApp = () => {
                                         </FormControl>
                                         </form>
                                     </Card>
-                                </div>
+                                </div> */}
                             </Container>
-                            <Container className="findmeg">
+                            {/* <Container className="findmeg">
                                 <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
                                 
                                 <Drawer className="journey-container" anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
@@ -192,7 +151,7 @@ const MyApp = () => {
                                         </Button>
                                     </div>
                                 </Drawer>
-                            </Container>
+                            </Container> */}
 
                             
                                     

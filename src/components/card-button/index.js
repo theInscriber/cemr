@@ -9,7 +9,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 const CardButton = () => {
 
     return (
-        <Card className="card hand" style={{cursor: 'pointer'}}>
+        <Card className="card card-button">
             <SVG/>
             <div className="card-body">
                 <div style={{width: 'fit-content', margin: 'auto'}}>
@@ -20,7 +20,7 @@ const CardButton = () => {
                 </div>
             </div>
             <CardHeader style={{textAlign: 'center'}}
-                title="Create new visit day"
+                title="Add New Visit"
                 subheader="September 14, 2016"
             />
         </Card>

@@ -28,13 +28,6 @@ body {
     right: 70% !important;
 }
 
-.hand{
-    cursor: pointer !important
-}
-
-.hand:hover{
-
-}
 
 .card{
     overflow: hidden;
@@ -57,6 +50,15 @@ body {
 
 .card-footer {
     padding: .75rem 1.25rem
+}
+
+.card-button {
+    color: inherit;
+    cursor: pointer !important
+}
+
+.card-button:hover {
+    color: rgb(21, 101, 192)
 }
 
 .sidebar {

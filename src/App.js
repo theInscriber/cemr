@@ -31,6 +31,7 @@ import { useState } from 'react'
 import i18n from '@dhis2/d2-i18n'
 
 import './style.css'
+import Visits from './components/visits';
 
 const query = {
     me: {
@@ -100,62 +101,42 @@ const MyApp = () => {
                                 
                                 </MenuList> */}
 
-                                <Card className="card">
-                                    {/* <Modal open small>
-                                        <Modal.Title>
-                                            This is a small modal with title, content and primary action
-                                        </Modal.Title>
-                                        <Modal.Content>
-                                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                        </Modal.Content>
-                                        <Modal.Actions>
-                                            <ButtonStrip end>
-                                                <Button
-                                                    onClick={function(){return alert(something)}}
-                                                    secondary
-                                                    type="button"
-                                                >
-                                                    Secondary action
-                                                </Button>
-                                                <Button
-                                                    onClick={function(){return alert(something)}}
-                                                    primary
-                                                    type="button"
-                                                >
-                                                    Primary action
-                                                </Button>
-                                            </ButtonStrip>
-                                        </Modal.Actions>
-                                    </Modal> */}
-                                        <CardHeader
-                                            title="Word of the Day"
-                                            subheader="September 14, 2016"
-                                            action={
-                                                <IconButton
-                                                aria-label="show more"
-                                                >
-                                                    <ExpandMoreIcon />
-                                                </IconButton>
-                                            }
-                                        />
-                                    {/* <div className="card-header">
-                                        <Typography color="textSecondary" gutterBottom>
-                                            
-                                        </Typography>
-                                    </div> */}
-                                    <div className="card-body">
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                        
-                                    </div>
-                                    {/* <CardActions disableSpacing>
-                                        <IconButton
-                                        aria-label="show more"
-                                        >
-                                        <ExpandMoreIcon />
-                                        </IconButton>
-                                    </CardActions> */}
-                                    {/* <div className="card-footer">Number 3</div> */}
-                                </Card>
+                                <div className="sidebar">
+                                    <Container>
+                                        <div className=""></div>
+                                        <div
+                                            >
+                                            <CardHeader
+                                                avatar={
+                                                    <Avatar aria-label="recipe">
+                                                        PS
+                                                    </Avatar>
+                                                }
+                                                title="Paul Sembereka"
+                                                subheader="September 14, 2016"
+                                            />
+                                            <TabBar fixed>
+                                                <Tab>
+                                                Tab A
+                                                </Tab>
+                                                <Tab>
+                                                Tab B
+                                                </Tab>
+                                                <Tab selected>
+                                                Tab C
+                                                </Tab>
+                                                <Tab>
+                                                Tab D
+                                                </Tab>
+                                            </TabBar>
+                                            <p>
+                                                Max-width of this container is 700 px
+                                            </p>
+                                            </div>
+                                    </Container>
+
+                                </div>
+                                
                                 
 
                                 <div
@@ -213,42 +194,7 @@ const MyApp = () => {
                                 </Drawer>
                             </Container>
 
-                            <Container>
-                                <div className=""></div>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar aria-label="recipe">
-                                            PS
-                                        </Avatar>
-                                    }
-                                    title="Paul Sembereka"
-                                    subheader="September 14, 2016"
-                                />
-                                <div
-                                    style={{
-                                        maxWidth: 700
-                                    }}
-                                    >
-                                    <TabBar fixed>
-                                        <Tab>
-                                        Tab A
-                                        </Tab>
-                                        <Tab>
-                                        Tab B
-                                        </Tab>
-                                        <Tab selected>
-                                        Tab C
-                                        </Tab>
-                                        <Tab>
-                                        Tab D
-                                        </Tab>
-                                    </TabBar>
-                                    <p>
-                                        Max-width of this container is 700 px
-                                    </p>
-                                    </div>
-                            </Container>
-
+                            
                                     
                                 {/* 
                                 <h1>
@@ -269,6 +215,11 @@ const MyApp = () => {
                 </DataQuery>
             </div>
             <Switch>
+                <Route path="/visits">
+                    <Container maxWidth="md">
+                        <Visits/>
+                    </Container>
+                </Route>
                 <Route path="/">
                     <Container maxWidth="md">
                         <Search />

@@ -3,6 +3,10 @@
     --info-color-bg: #faebcc
 }
 
+body {
+    background: #F3F3F3 !important
+}
+
 .card-info{
     background: var(--info-color-bg) !important;
     color: var(--info-color-font) !important;
@@ -24,8 +28,23 @@
     right: 70% !important;
 }
 
+.hand{
+    cursor: pointer !important
+}
+
+.hand:hover{
+
+}
+
 .card{
     overflow: hidden;
+    box-shadow: rgba(64, 75, 90, 0.29) 0px 0px 1px 0px, rgba(64, 75, 90, 0.3) 0px 3px 8px -2px !important;
+    transition: box-shadow 200ms ease-in-out 0s;
+    margin-bottom: 2rem;
+}
+
+.card:hover{
+    box-shadow: rgba(34, 39, 46, 0.29) 0px 0px 1px 0px, rgba(24, 31, 36, 0.3) 0px 8px 8px -2px !important;
 }
 
 .card-header {

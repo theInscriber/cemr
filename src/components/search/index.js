@@ -28,9 +28,9 @@ const Search = () => {
                                 <form style={{margin: 'auto', width: '80%'}}>
                                     <SearchField/>
                                 </form>
-                                {/* <div style={{width: '66%', margin: 'auto'}}>
-                                    <Info/>
-                                </div> */}
+                                <div style={{width: '66%', margin: 'auto'}}>
+                                    <Info className='unset-box-shadow'/>
+                                </div>
                             </div>
                         </Card>
                     </div>
@@ -41,7 +41,7 @@ const Search = () => {
             {/* <div style={{width: '50%', margin: 'auto'}}>
             </div> */}
 
-            {/* <Results/> */}
+            <Results/>
         </>
     )
 } 

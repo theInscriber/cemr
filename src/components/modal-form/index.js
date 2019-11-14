@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 
 import { Modal, ButtonStrip, Button, FormControl, InputField } from '@dhis2/ui-core'
+import SVG from '../card-button/svg';
 
-const ModalForm = ({isOpen, setIsModalOpen}) => {
+const ModalForm = ({isOpen, setIsModalOpen, title, children, buttons}) => {
 
-    console.log(isOpen)
+    const renderTitle = (title) => {
+        return title ? (<Modal.Title>{title}</Modal.Title>) : <></>
+    }
+
+    const renderButtons = buttons => {
+        return buttons ? buttons : <></>
+    }
 
     const handleClose = () => {
-        console.log('clicked')
         setIsModalOpen(false)
     }
 
@@ -17,49 +23,16 @@ const ModalForm = ({isOpen, setIsModalOpen}) => {
             onClose={handleClose}
             open={isOpen}
             >
-            <Modal.Title>
-                Add New Visit
-            </Modal.Title>
+            {/* <SVG/> */}
+            {renderTitle(title)}
             <Modal.Content>
                 <form>
-                    <FormControl>
-                        <InputField
-                        label="First Name"
-                        name="input"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
-                        type="text"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="Last Name"
-                        name="input2"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
-                        type="text"
-                        />
-                    </FormControl>
+                    {children}
                 </form>
             </Modal.Content>
             <Modal.Actions>
                 <ButtonStrip end>
-                <Button
-                    onClick={function(){return alert('something')}}
-                    secondary
-                    type="button"
-                >
-                    Cancel
-                </Button>
-                <Button
-                    onClick={function(){return alert('something')}}
-                    primary
-                    type="button"
-                >
-                    Add
-                </Button>
+                    {renderButtons(buttons)}
                 </ButtonStrip>
             </Modal.Actions>
         </Modal>

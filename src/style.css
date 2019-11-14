@@ -1,6 +1,8 @@
 :root{
-    --info-color-font: #a78250;
-    --info-color-bg: #ffecb2
+    --info-color-font: #754e1a;
+    --info-color-bg: #ffecb2;
+    --base-box-shadow: rgba(64, 75, 90, 0.29) 0px 0px 1px 0px, rgba(64, 75, 90, 0.3) 0px 3px 8px -2px;
+    --hover-box-shadow: rgba(34, 39, 46, 0.29) 0px 0px 1px 0px, rgba(24, 31, 36, 0.3) 0px 8px 8px -2px
 }
 
 body {
@@ -31,13 +33,13 @@ body {
 
 .card{
     overflow: hidden;
-    box-shadow: rgba(64, 75, 90, 0.29) 0px 0px 1px 0px, rgba(64, 75, 90, 0.3) 0px 3px 8px -2px !important;
+    box-shadow: var(--base-box-shadow) !important;
     transition: box-shadow 200ms ease-in-out 0s;
     margin-bottom: 2rem;
 }
 
 .card:hover{
-    box-shadow: rgba(34, 39, 46, 0.29) 0px 0px 1px 0px, rgba(24, 31, 36, 0.3) 0px 8px 8px -2px !important;
+    box-shadow: var(--hover-box-shadow) !important;
 }
 
 .card-header {
@@ -61,6 +63,11 @@ body {
     color: rgb(21, 101, 192)
 }
 
+.unset-box-shadow{
+    box-shadow: unset !important;
+}
+
+
 .sidebar {
     margin-top: 32px;
     position: sticky;
@@ -71,5 +78,9 @@ header{
     position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: rgba(64, 75, 90, 0.29) 0px 0px 1px 0px, rgba(64, 75, 90, 0.3) 0px 3px 8px -2px !important;
+    box-shadow: var(--base-box-shadow) !important;
+}
+
+.hidden{
+    display: none !important
 }

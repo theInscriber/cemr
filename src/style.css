@@ -62,11 +62,14 @@ body {
 }
 
 .sidebar {
-    position: fixed;
-    top: 47px;
-    right:0;
-    background: #faebcc;
-    height: 100%;
-    width: 27%;
-    padding-top: 10%;
+    margin-top: 32px;
+    position: sticky;
+    top: 80px;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: rgba(64, 75, 90, 0.29) 0px 0px 1px 0px, rgba(64, 75, 90, 0.3) 0px 3px 8px -2px !important;
 }

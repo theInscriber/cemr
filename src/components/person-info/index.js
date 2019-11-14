@@ -9,7 +9,7 @@ const PersonInfo = () => {
 
     return (
         <>
-            <Card className="card card-button" >
+            <Card className="card" >
                 <SVG/>
                 <div className="card-body" >
                     <CardHeader

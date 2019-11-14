@@ -23,7 +23,7 @@ const Person = () => {
                     </div>
                 </Grid>
                 <Grid item xs={3}>
-                    <div style={{marginTop: '32px', height: '47%'}}>
+                    <div className="sidebar" style={{ height: '47%'}}>
                         <PersonInfo/>
                     </div>
                 </Grid>

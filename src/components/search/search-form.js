@@ -16,7 +16,7 @@ const SearchField = () => {
 
 
     return (
-        <Grid container alignItems="center" spacing={3}>
+        <Grid container alignItems="center" justify="center" spacing={3}>
             <Grid item xs={8}>
                 <FormControl>
                     <InputField
@@ -31,13 +31,14 @@ const SearchField = () => {
                         />
                 </FormControl>
             </Grid>
-            <Grid item xs={4} >
+            <Grid item xs={2} >
                 <Button
                     name="Button"
                     onClick={handleClick}
                     primary
                     type="button"
                     value="default"
+                    style={{width: '100%'}}
                     >
                     Search
                 </Button>

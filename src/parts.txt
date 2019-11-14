@@ -1,0 +1,104 @@
+ {/* <Container className="findmeg">
+                                <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
+                                
+                                <Drawer className="journey-container" anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
+                                    <MenuList>
+                                        {dispalyIndicators(data)}
+                                    
+                                    </MenuList>
+                                    <div className="journey">
+                                        <Button
+                                        name="Button"
+                                        className="journey-inner"
+                                        onClick={function(_ref){var target=_ref.target;return console.info("".concat(target.name,": ").concat(target.value))}}
+                                        primary
+                                        type="button"
+                                        value="default"
+                                        >
+                                            Label me!
+                                        </Button>
+                                    </div>
+                                </Drawer>
+                            </Container> */}
+
+
+ {/* 
+                                <h1>
+                                    {i18n.t('Hello {{name}}', { name: data.me.name })}
+                                </h1>
+                                <h3>{i18n.t('Welcome to DHIS2!')}</h3>
+                                
+                                <ul>
+                                </ul> */}
+                                {/* <pre>
+                                    {data.indicators.indicators
+                                        .map(ind => ind.displayName)
+                                        .join('\n')}
+                                </pre> */}
+
+
+                                      {/* <Search/> */}
+                                {/* <MenuList>
+                                    {dispalyIndicators(data)}
+                                
+                                </MenuList> */}
+
+
+
+                                   
+    const dispalyIndicators = (  {indicators: {indicators}}) => { 
+        return indicators.map(indicator =>  <MenuItem
+            dense
+            label={indicator.displayName}
+            value={indicator.displayName}
+            />)
+    }
+
+
+      const toggleDrawer = (side, open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+
+        <div className="container">
+                <style jsx>{`
+                    .container {
+                        position: unset;
+                        top: 48px;
+                        bottom: 0px;
+                        left: 0px;
+                        right: 0px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1rem;
+                    }
+                }`}</style>
+                <DataQuery query={query}>
+                    {({ error, loading, data }) => {
+                        if (error) return <span>ERROR</span>
+                        if (loading) return <span>...</span>
+                        return (
+                            <>
+                            <Container maxWidth="md">
+                                
+                          
+
+                                <div className="sidebar">
+                                    <Container>
+                                        <PersonInfo/>
+                                    </Container>
+                                </div>
+                                
+                            </Container>                      
+                            </>
+                        )
+                    }}
+                </DataQuery>
+            </div>
+
+              const [state, setState] = React.useState({bottom: false});
+
+        setState({ ...state, [side]: open });
+      };

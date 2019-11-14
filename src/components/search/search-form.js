@@ -11,7 +11,7 @@ const SearchField = () => {
     let history = useHistory();
 
     function handleClick() {
-        history.push("/visits");
+        history.push("/person");
     }
 
 

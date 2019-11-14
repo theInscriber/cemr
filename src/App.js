@@ -9,12 +9,14 @@ import { DataQuery } from '@dhis2/app-runtime'
 
 import Search from './components/search'
 
+
 import Container from '@material-ui/core/Container';
 
 import i18n from '@dhis2/d2-i18n'
 
 import './style.css'
 import Visits from './components/visits';
+import Person from './components/person';
 
 const query = {
     me: {
@@ -30,13 +32,16 @@ const query = {
 }
 
 const MyApp = () => {
-  
+    
     return (
+        // <HeaderBar appName="Example!" />
+
         <BrowserRouter>
             <Switch>
-                <Route path="/visits">
-                    <Container maxWidth="md" >
-                        <Visits/>
+                <Route path="/person">
+                    <Container maxWidth={false} >
+                        <Person/>
+                        {/* <Visits/> */}
                     </Container>
                 </Route>
                 <Route path="/">

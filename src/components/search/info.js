@@ -13,7 +13,7 @@ const Info = (props) => {
         className = ''
     }
 
-    const [isFormOpen, setIsFormOpen] = useState(false) 
+    const [isFormOpen, setIsFormOpen] = useState(false)
 
     const handleAddVisit = (value) => {
         setIsFormOpen(value)
@@ -39,8 +39,7 @@ const Info = (props) => {
     return (
         <Card className={`card-info ${className}`}>
             <div className="card-body">
-                <p>Not Found</p>
-                <p>iaoio</p>
+                <p>Patient Not Found</p>
                 <Button
 
                 name="Button"
@@ -53,7 +52,7 @@ const Info = (props) => {
                 </Button>
 
             </div>
-            <ModalForm 
+            <ModalForm
                 title='Add New Person'
                 isOpen={isFormOpen} setIsModalOpen={handleClickAway}
                 buttons={
@@ -162,6 +161,6 @@ const Info = (props) => {
             </ModalForm>
         </Card>
     )
-} 
+}
 
 export default Info

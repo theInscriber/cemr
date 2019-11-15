@@ -23,7 +23,6 @@ const ModalForm = ({isOpen, setIsModalOpen, title, children, buttons}) => {
             onClose={handleClose}
             open={isOpen}
             >
-            {/* <SVG/> */}
             {renderTitle(title)}
             <Modal.Content>
                 <form>

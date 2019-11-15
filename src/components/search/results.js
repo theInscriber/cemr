@@ -6,10 +6,15 @@ import {
 }
 from '@dhis2/ui-core'
 import { getValue } from '../../utils'
+import reactRouterDom from "react-router-dom";
+const { useHistory } = reactRouterDom
 
 
-const renderTrackedEntityInstances = () => {
+const updateCurrentHealthPassport = (item) => {
+    let history = useHistory();
 
+    sessionStorage.setItem('healthPassport', JSON.stringify(item))
+    history.push('/health-passport')
 }
 
 const Results = ({trackedEntityInstances}) => {
@@ -66,6 +71,15 @@ const Results = ({trackedEntityInstances}) => {
                         <TableCell>
                             {item.created}
                         </TableCell>
+                            <Button
+                                name="Button"
+                                onClick={updateCurrentHealthPassport(item)}
+                                primary
+                                type="button"
+                                value="default"
+                            >
+                                View Person
+                            </Button>
                         </TableRow>
                     ))
             }

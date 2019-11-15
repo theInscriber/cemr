@@ -40,7 +40,7 @@ const MyApp = () => {
         // <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/person">
+                    <Route path="/health-passport">
                         <Container maxWidth={false} >
                             <Person/>
                         </Container>

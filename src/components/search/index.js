@@ -10,12 +10,23 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 import Grid from '@material-ui/core/Grid'
 
+
+
 const Search = () => {
+    const [trackedEntityInstances, setTrackedEntityInstances] = useState([])
+    const [showAddButton, setShowAddButton] = useState(false)
+
+    const handleMatchedTrackedEntityInstances = (instances) => {
+        console.log(instances)
+        setTrackedEntityInstances(instances)
+        if(!showAddButton)
+            setShowAddButton(true)
+    }
 
     return (
-        <>  
+        <>
 
-            <Grid 
+            <Grid
                 container
                 justify="center"
                 alignItems="center">
@@ -26,24 +37,26 @@ const Search = () => {
                             <SVG/>
                             <div className="card-body" >
                                 <form style={{margin: 'auto', width: '80%'}}>
-                                    <SearchField/>
+                                    <SearchField setMatchedTrackedEntityInstances={handleMatchedTrackedEntityInstances}/>
                                 </form>
                                 <div style={{width: '66%', margin: 'auto'}}>
-                                    <Info className='unset-box-shadow'/>
+                                    {
+                                        trackedEntityInstances.length === 0 && showAddButton ? <Info className='unset-box-shadow'/> : <></>
+                                    }
                                 </div>
                             </div>
                         </Card>
                     </div>
                 </Grid>
             </Grid>
-            
+
 
             {/* <div style={{width: '50%', margin: 'auto'}}>
             </div> */}
 
-            <Results/>
+            <Results trackedEntityInstances={trackedEntityInstances}/>
         </>
     )
-} 
+}
 
 export default Search

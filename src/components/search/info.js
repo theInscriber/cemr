@@ -9,7 +9,7 @@ const Info = (props) => {
         className = ''
     }
 
-    const [isFormOpen, setIsFormOpen] = useState(false) 
+    const [isFormOpen, setIsFormOpen] = useState(false)
 
     const handleAddVisit = () => {
         setIsFormOpen(true)
@@ -39,6 +39,6 @@ const Info = (props) => {
 
         </Card>
     )
-} 
+}
 
 export default Info

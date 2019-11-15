@@ -13,7 +13,7 @@ import PersonInfo from '../person-info';
 
 const Person = () => {
     return (
-        <>  
+        <>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
                 </Grid>
@@ -23,7 +23,7 @@ const Person = () => {
                     </div>
                 </Grid>
                 <Grid item xs={3}>
-                    <div className="sidebar" style={{ height: '47%'}}>
+                    <div className="sidebar" >
                         <PersonInfo/>
                     </div>
                 </Grid>
@@ -31,6 +31,6 @@ const Person = () => {
 
         </>
     )
-} 
+}
 
 export default Person

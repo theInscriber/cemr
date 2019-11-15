@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
+import { getValue} from "../../utils";
 import CardHeader from '@material-ui/core/CardHeader'
 import Avatar from '@material-ui/core/Avatar'
-import { Card, ScrollBar, TabBar, Tab, Divider, Menu, MenuItem, DropdownButton, Button } from '@dhis2/ui-core'
+import { Card, ScrollBar, TabBar, Tab, Divider, Menu, MenuItem, DropdownButton, Button , MenuList} from '@dhis2/ui-core'
 import SVG from '../card-button/svg'
 
 const PersonInfo = () => {
+    const [trackedEntityInstance, setTrackedEntityInstance] = useState(JSON.parse(sessionStorage.getItem('healthPassport')))
 
     return (
         <>
@@ -18,15 +19,15 @@ const PersonInfo = () => {
                                 PS
                             </Avatar>
                         }
-                        title="Paul Semberseka"
-                        subheader="September 14, 2016"
+                        title={`${getValue(trackedEntityInstance.attributes, 'attribute', "UHT1HU1U0gO")} ${getValue(trackedEntityInstance.attributes, 'attribute', "G4njs26hhxm")}`}
+                        subheader={getValue(trackedEntityInstance.attributes, 'attribute', "gHGyrwKPzej")}
                         action={
 
-                            <DropdownButton 
+                            <DropdownButton
                                 component={
                                 <Menu className="dropdown-fixed">
                                     <Divider margin="8px 0" />
-                                    <MenuItem 
+                                    <MenuItem
                                         label={
                                             <Button
                                                 name="Button"
@@ -40,7 +41,7 @@ const PersonInfo = () => {
                                             </Button>
                                         }
                                         onClick={function onClick(val){alert("this is ".concat(val))}} value="two"></MenuItem>
-                                    <MenuItem 
+                                    <MenuItem
                                         label={
                                             <Button
                                                 name="Button"
@@ -59,7 +60,7 @@ const PersonInfo = () => {
                             </DropdownButton>
                         }
                     />
-                    <ScrollBar>
+                    {/*<ScrollBar>
                         <TabBar fixed>
                             <Tab>
                                 Tab A
@@ -74,14 +75,18 @@ const PersonInfo = () => {
                                 Tab D
                             </Tab>
                         </TabBar>
-                    </ScrollBar>
-                    <p>
-                        Max-width of this container is 700 px
-                    </p>
+                    </ScrollBar>*/}
+                    <div>
+                        <Menu>
+                            <MenuItem label={'Gender: '+getValue(trackedEntityInstance.attributes, 'attribute', "rJTMfOeOmpI")}/>
+                            <MenuItem label={'National ID: '+getValue(trackedEntityInstance.attributes, 'attribute', "ueFYuD7UFwB")}/>
+                            <MenuItem label={'Created: '+trackedEntityInstance.created}/>
+                        </Menu>
+                    </div>
                 </div>
             </Card>
         </>
     )
-} 
+}
 
 export default PersonInfo

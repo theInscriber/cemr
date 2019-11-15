@@ -1,27 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Card, FormControl, InputField, ScrollBar, TabBar, Tab } from '@dhis2/ui-core'
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+
+import React, { useState } from 'react'
+import { Button, FormControl, InputField, TabBar, Tab, RadioGroup, ButtonStrip } from '@dhis2/ui-core'
+import { useDataMutation, DataMutation } from '@dhis2/app-runtime'
 import ModalForm from '../modal-form'
 import TabContent from '../TabContent';
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers'
+
+
+
+const mutation = {
+    resource: 'trackedEntityInstances',
+    type: 'create',
+    data: ({ trackedEntityType, orgUnit, attributes, enrollments }) => ({
+        trackedEntityType, orgUnit, attributes, enrollments
+    }),
+}
 
 const AddPersonForm = ({isOpen, setIsFormOpen}) => {
     const [tabs, setSelectedTab] = useState([true, false, false, false])
     const [tabPanelValue, setTabPanelValue] = useState(0)
-    
-    const handleAddVisit = (value) => {
-        setIsFormOpen(value)
-    }
-    
-    
-    const handleClickAway = (value) => {
+
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLastName] = useState()
+    const [gender, setGender] = useState()
+    const [DoB, setDoB] = useState()
+    const [nationalID, setNatinalID] = useState()
+
+    const handleClickAway = () => {
         setIsFormOpen(false)
     }
-    
-    // useEffect(()=>{
-    //     console.log(isOpen, isFormOpen)
-    //     setIsFormOpen(isOpen)
-    //     isOpen = false
-    // })
-
     const changeSelectedTab = (index, e) => {
         e.preventDefault();
         setSelectedTab(tabs.map((value, key) => {
@@ -31,8 +40,37 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
         setTabPanelValue(index)
     }
 
+    const attributes = [
+        {attribute : "UHT1HU1U0gO", value : firstName},
+        {attribute : "G4njs26hhxm", value : lastName,},
+        {attribute : "rJTMfOeOmpI", value : gender,},
+        {attribute : "gHGyrwKPzej", value : DoB},
+        {attribute : "ueFYuD7UFwB", value : nationalID,}
+    ]
+
+    const enrollments = [ {
+        orgUnit: "ImspTQPwCqd",
+        program: "yGjTvvN9oLb",
+    }];
+
+    
+    const [mutate, { called, loading, error, data }] = useDataMutation(mutation, {
+        onComplete: (ew) => console.log(ew),
+        onError: err => console.log(err),
+        variables: {
+            trackedEntityType: "JhCcn4N3IW5",
+            orgUnit: "ImspTQPwCqd",
+            attributes: attributes,
+            enrollments: enrollments
+        }
+    }
+    )
+    
+    const createPerson = () => {
+        mutate({attributes})
+    }
+    
     return (
-        
         <ModalForm 
         title='Add New Person'
         isOpen={isOpen} 
@@ -47,7 +85,7 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
                     Cancel
                 </Button>
                 <Button
-                    onClick={function(){return alert('something')}}
+                    onClick={() => createPerson()}
                     primary
                     type="button"
                 >
@@ -61,7 +99,7 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
                     Important Data
                 </Tab>
                 <Tab selected={tabs[1]} onClick={(e) => changeSelectedTab(1, e)}>
-                    Tab B
+                    Allegies
                 </Tab>
                 <Tab selected={tabs[2]} onClick={(e) => changeSelectedTab(2, e)}>
                     Tab C
@@ -75,63 +113,66 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
                     <FormControl>
                         <InputField
                         label="First Name *"
-                        name="input"
+                        name="firstName"
                         onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
+                        onChange={(e) => {setFirstName(e.target.value)}}
                         onFocus={function onFocus(){}}
                         type="text"
+                        value={firstName}
                         />
                     </FormControl>
                     <FormControl>
                         <InputField
                         label="Last Name *"
-                        name="input2"
+                        name="lastName"
                         onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
+                        onChange={(e) => {setLastName(e.target.value)}}
                         onFocus={function onFocus(){}}
+                        value={lastName}
                         type="text"
                         />
                     </FormControl>
                     <FormControl>
                         <InputField
-                        label="NationalId"
-                        name="input2"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
+                        label="National Identity *"
+                        name="nationalID"
+                        onChange={(e) => {setNatinalID(e.target.value)}}
                         type="text"
+                        value={nationalID}
                         />
                     </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="Birthdate"
-                        name="input2"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
-                        type="text"
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker 
+                            disableToolbar
+                            variant="inline"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-of-birth"
+                            label="Date of Birth"
+                            onChange={(e) => setDoB(new Date(e).toISOString().split('T')[0])}
+                            value={DoB}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
                         />
-                    </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="Home Address"
-                        name="input2"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
-                        type="text"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="Birthdate"
-                        name="input2"
-                        onBlur={function onBlur(){}}
-                        onChange={function onChange(){console.log("Nothing happens")}}
-                        onFocus={function onFocus(){}}
-                        type="text"
-                        />
-                    </FormControl>
+                    </MuiPickersUtilsProvider>
+                    <RadioGroup
+                        inline
+                        label="Sex"
+                        name="sex"
+                        options={[
+                            {
+                            label: 'Male',
+                            value: 'Male'
+                            },
+                            {
+                            label: 'Female',
+                            value: 'Female'
+                            }
+                        ]}
+                        onChange={(e) => setGender(e.target.value)}
+                        value={gender}
+                    />
                 </div>
             </TabContent>
             <TabContent index={1} value={tabPanelValue}>

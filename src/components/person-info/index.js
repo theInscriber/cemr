@@ -11,7 +11,7 @@ const PersonInfo = () => {
         <>
             <Card className="card" >
                 <SVG/>
-                <div className="card-body" >
+                <div className="card-body action-margin-top" >
                     <CardHeader
                         avatar={
                             <Avatar aria-label="recipe">
@@ -24,22 +24,36 @@ const PersonInfo = () => {
 
                             <DropdownButton 
                                 component={
-                                <Menu>
+                                <Menu className="dropdown-fixed">
                                     <Divider margin="8px 0" />
-                                    <MenuItem label={
-                                        <Button
-                                            name="Button"
-                                            onClick={function(_ref){var target=_ref.target;return console.info("".concat(target.name,": ").concat(target.value))}}
-                                            primary
-                                            small
-                                            type="button"
-                                            value="default"
-                                        >
-                                            Edit
-                                        </Button>
-                                        } 
+                                    <MenuItem 
+                                        label={
+                                            <Button
+                                                name="Button"
+                                                onClick={function(_ref){var target=_ref.target;return console.info("".concat(target.name,": ").concat(target.value))}}
+                                                primary
+                                                small
+                                                type="button"
+                                                value="default"
+                                            >
+                                                Edit
+                                            </Button>
+                                        }
                                         onClick={function onClick(val){alert("this is ".concat(val))}} value="two"></MenuItem>
-                                    <MenuItem label="Delete" onClick={function onClick(val){alert("this is ".concat(val))}} value="three"/>
+                                    <MenuItem 
+                                        label={
+                                            <Button
+                                                name="Button"
+                                                onClick={function(_ref){var target=_ref.target;return console.info("".concat(target.name,": ").concat(target.value))}}
+                                                secondary
+                                                small
+                                                type="button"
+                                                value="default"
+                                            >
+                                                Delete
+                                            </Button>
+                                        }
+                                        onClick={function onClick(val){alert("this is ".concat(val))}} value="three"/>
                                 </Menu>}>
                             Options
                             </DropdownButton>

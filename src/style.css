@@ -85,6 +85,14 @@ header{
     display: none !important
 }
 
-.card-body .MuiCardHeader-action{
+.action-margin-top .MuiCardHeader-action{
     margin-top: 3px !important
+}
+
+.dropdown-fixed{
+    position: fixed !important
+}
+
+.MuiPopover-root{
+    z-index: 10000 !important
 }

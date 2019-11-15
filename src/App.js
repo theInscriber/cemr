@@ -5,6 +5,9 @@ import reactRouterDom from 'react-router-dom'
 // You can dereference multiple named exports in a single line
 const { BrowserRouter, Switch, Route, Link } = reactRouterDom
 
+// import { Provider } from 'react-redux'
+// import store from './store'
+
 import { DataQuery } from '@dhis2/app-runtime'
 
 import Search from './components/search'
@@ -32,25 +35,24 @@ const query = {
 }
 
 const MyApp = () => {
-    
-    return (
-        // <HeaderBar appName="Example!" />
 
-        <BrowserRouter>
-            <Switch>
-                <Route path="/person">
-                    <Container maxWidth={false} >
-                        <Person/>
-                        {/* <Visits/> */}
-                    </Container>
-                </Route>
-                <Route path="/">
-                    <Container maxWidth="md">
-                        <Search />
-                    </Container>
-                </Route>
-            </Switch>
-        </BrowserRouter>
+    return (
+        // <Provider store={store}>
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/person">
+                        <Container maxWidth={false} >
+                            <Person/>
+                        </Container>
+                    </Route>
+                    <Route path="/">
+                        <Container maxWidth="md">
+                            <Search />
+                        </Container>
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        // </Provider>
     )
 }
 

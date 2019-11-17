@@ -7,7 +7,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 
 const CardButton = ({onClick}) => {
-    
+
     const handleClick = () => {
         onClick(true)
     }
@@ -26,11 +26,11 @@ const CardButton = ({onClick}) => {
                 </div>
                 <CardHeader style={{textAlign: 'center'}}
                     title="Add New Visit"
-                    subheader="September 14, 2016"
+                    subheader={ new Date().toDateString()}
                 />
             </Card>
         </div>
     )
-} 
+}
 
 export default CardButton

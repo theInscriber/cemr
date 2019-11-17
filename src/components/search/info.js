@@ -21,7 +21,7 @@ const Info = (props) => {
 
     return (
         <Card className={`card-info ${className}`}>
-            <div className="card-header"><h3>Person not found</h3></div>
+            <div className="card-header"><h3>Patient Health Passport not Found!</h3></div>
             <div className="card-body">
                 <Button
 
@@ -31,7 +31,7 @@ const Info = (props) => {
                 type="button"
                 value="default"
                 >
-                    Add New Person
+                    Add New Health Passport
                 </Button>
 
             </div>

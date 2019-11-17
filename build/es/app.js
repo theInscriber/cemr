@@ -25522,7 +25522,7 @@ var SearchField = function SearchField(_ref) {
       item: true,
       xs: 2
     }, React.createElement(Button$1, {
-      name: "Button",
+      name: "search-button",
       onClick: handleClick,
       primary: true,
       type: "button",
@@ -25536,23 +25536,28 @@ var SearchField = function SearchField(_ref) {
 
 var useHistory$1 = reactRouterDom.useHistory;
 
-var updateCurrentHealthPassport = function updateCurrentHealthPassport(item) {
-  var history = useHistory$1();
-  sessionStorage.setItem('healthPassport', JSON.stringify(item));
-  history.push('/health-passport');
-};
-
 var Results = function Results(_ref) {
   var trackedEntityInstances = _ref.trackedEntityInstances;
-  return React.createElement(Table, null, React.createElement(TableHead, null, React.createElement(TableRowHead, null, React.createElement(TableCellHead, null, "National ID"), React.createElement(TableCellHead, null, "First Name"), React.createElement(TableCellHead, null, "Last Name"), React.createElement(TableCellHead, null, "Gender"), React.createElement(TableCellHead, null, "Birthdate"), React.createElement(TableCellHead, null, "Address"), React.createElement(TableCellHead, null, "Created"))), React.createElement(TableBody, null, trackedEntityInstances.map(function (item) {
-    return React.createElement(TableRow, null, React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "ueFYuD7UFwB")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "UHT1HU1U0gO")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "G4njs26hhxm")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "rJTMfOeOmpI")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "gHGyrwKPzej")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "yWr8ngSC52h")), React.createElement(TableCell, null, item.created), React.createElement(Button$1, {
-      name: "Button",
-      onClick: updateCurrentHealthPassport(item),
-      primary: true,
-      type: "button",
-      value: "default"
-    }, "View Person"));
-  })));
+  var history = useHistory$1();
+
+  var updateCurrentHealthPassport = function updateCurrentHealthPassport(item) {
+    sessionStorage.setItem('healthPassport', JSON.stringify(item));
+    history.push('/health-passport');
+  };
+
+  if (trackedEntityInstances) {
+    return React.createElement(Table, null, React.createElement(TableHead, null, React.createElement(TableRowHead, null, React.createElement(TableCellHead, null, "National ID"), React.createElement(TableCellHead, null, "First Name"), React.createElement(TableCellHead, null, "Last Name"), React.createElement(TableCellHead, null, "Gender"), React.createElement(TableCellHead, null, "Birthdate"), React.createElement(TableCellHead, null, "Address"), React.createElement(TableCellHead, null, "Created"))), React.createElement(TableBody, null, trackedEntityInstances.map(function (item) {
+      return React.createElement(TableRow, null, React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "ueFYuD7UFwB")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "UHT1HU1U0gO")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "G4njs26hhxm")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "rJTMfOeOmpI")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "gHGyrwKPzej")), React.createElement(TableCell, null, getValue(item.attributes, 'attribute', "yWr8ngSC52h")), React.createElement(TableCell, null, item.created), React.createElement(Button$1, {
+        name: "view-health-passport-button",
+        onClick: function onClick() {
+          return updateCurrentHealthPassport(item);
+        },
+        primary: true,
+        type: "button",
+        value: "default"
+      }, "View Person"));
+    })));
+  }
 };
 
 var toDate_1 = createCommonjsModule(function (module, exports) {
@@ -48711,7 +48716,7 @@ var CardButton = function CardButton(_ref) {
       textAlign: 'center'
     },
     title: "Add New Visit",
-    subheader: "September 14, 2016"
+    subheader: new Date().toDateString()
   })));
 };
 

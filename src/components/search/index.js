@@ -11,7 +11,6 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Grid from '@material-ui/core/Grid'
 
 
-
 const Search = () => {
     const [trackedEntityInstances, setTrackedEntityInstances] = useState([])
     const [showAddButton, setShowAddButton] = useState(false)

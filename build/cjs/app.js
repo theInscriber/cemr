@@ -25527,7 +25527,7 @@ var SearchField = function SearchField(_ref) {
       item: true,
       xs: 2
     }, React__default.createElement(uiCore.Button, {
-      name: "Button",
+      name: "search-button",
       onClick: handleClick,
       primary: true,
       type: "button",
@@ -25541,23 +25541,28 @@ var SearchField = function SearchField(_ref) {
 
 var useHistory$1 = reactRouterDom.useHistory;
 
-var updateCurrentHealthPassport = function updateCurrentHealthPassport(item) {
-  var history = useHistory$1();
-  sessionStorage.setItem('healthPassport', JSON.stringify(item));
-  history.push('/health-passport');
-};
-
 var Results = function Results(_ref) {
   var trackedEntityInstances = _ref.trackedEntityInstances;
-  return React__default.createElement(uiCore.Table, null, React__default.createElement(uiCore.TableHead, null, React__default.createElement(uiCore.TableRowHead, null, React__default.createElement(uiCore.TableCellHead, null, "National ID"), React__default.createElement(uiCore.TableCellHead, null, "First Name"), React__default.createElement(uiCore.TableCellHead, null, "Last Name"), React__default.createElement(uiCore.TableCellHead, null, "Gender"), React__default.createElement(uiCore.TableCellHead, null, "Birthdate"), React__default.createElement(uiCore.TableCellHead, null, "Address"), React__default.createElement(uiCore.TableCellHead, null, "Created"))), React__default.createElement(uiCore.TableBody, null, trackedEntityInstances.map(function (item) {
-    return React__default.createElement(uiCore.TableRow, null, React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "ueFYuD7UFwB")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "UHT1HU1U0gO")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "G4njs26hhxm")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "rJTMfOeOmpI")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "gHGyrwKPzej")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "yWr8ngSC52h")), React__default.createElement(uiCore.TableCell, null, item.created), React__default.createElement(uiCore.Button, {
-      name: "Button",
-      onClick: updateCurrentHealthPassport(item),
-      primary: true,
-      type: "button",
-      value: "default"
-    }, "View Person"));
-  })));
+  var history = useHistory$1();
+
+  var updateCurrentHealthPassport = function updateCurrentHealthPassport(item) {
+    sessionStorage.setItem('healthPassport', JSON.stringify(item));
+    history.push('/health-passport');
+  };
+
+  if (trackedEntityInstances) {
+    return React__default.createElement(uiCore.Table, null, React__default.createElement(uiCore.TableHead, null, React__default.createElement(uiCore.TableRowHead, null, React__default.createElement(uiCore.TableCellHead, null, "National ID"), React__default.createElement(uiCore.TableCellHead, null, "First Name"), React__default.createElement(uiCore.TableCellHead, null, "Last Name"), React__default.createElement(uiCore.TableCellHead, null, "Gender"), React__default.createElement(uiCore.TableCellHead, null, "Birthdate"), React__default.createElement(uiCore.TableCellHead, null, "Address"), React__default.createElement(uiCore.TableCellHead, null, "Created"))), React__default.createElement(uiCore.TableBody, null, trackedEntityInstances.map(function (item) {
+      return React__default.createElement(uiCore.TableRow, null, React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "ueFYuD7UFwB")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "UHT1HU1U0gO")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "G4njs26hhxm")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "rJTMfOeOmpI")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "gHGyrwKPzej")), React__default.createElement(uiCore.TableCell, null, getValue(item.attributes, 'attribute', "yWr8ngSC52h")), React__default.createElement(uiCore.TableCell, null, item.created), React__default.createElement(uiCore.Button, {
+        name: "view-health-passport-button",
+        onClick: function onClick() {
+          return updateCurrentHealthPassport(item);
+        },
+        primary: true,
+        type: "button",
+        value: "default"
+      }, "View Person"));
+    })));
+  }
 };
 
 var toDate_1 = createCommonjsModule(function (module, exports) {
@@ -48716,7 +48721,7 @@ var CardButton = function CardButton(_ref) {
       textAlign: 'center'
     },
     title: "Add New Visit",
-    subheader: "September 14, 2016"
+    subheader: new Date().toDateString()
   })));
 };
 

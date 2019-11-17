@@ -20,7 +20,7 @@ const PersonInfo = () => {
                             </Avatar>
                         }
                         title={`${getValue(trackedEntityInstance.attributes, 'attribute', "UHT1HU1U0gO")} ${getValue(trackedEntityInstance.attributes, 'attribute', "G4njs26hhxm")}`}
-                        subheader={getValue(trackedEntityInstance.attributes, 'attribute', "gHGyrwKPzej")}
+                        subheader={new Date(getValue(trackedEntityInstance.attributes, 'attribute', "zyiaJT7keXJ")).toDateString()}
                         action={
 
                             <DropdownButton

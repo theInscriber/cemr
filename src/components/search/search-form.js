@@ -56,7 +56,7 @@ const SearchField = ({setMatchedTrackedEntityInstances}) => {
                             </Grid>
                             <Grid item xs={2} >
                                 <Button
-                                    name="Button"
+                                    name="search-button"
                                     onClick={handleClick}
                                     primary
                                     type="button"

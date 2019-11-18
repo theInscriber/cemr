@@ -78,8 +78,15 @@ const PersonInfo = () => {
                     </ScrollBar>*/}
                     <div>
                         <Menu>
-                            <MenuItem label={'Gender: '+getValue(trackedEntityInstance.attributes, 'attribute', "rJTMfOeOmpI")}/>
                             <MenuItem label={'National ID: '+getValue(trackedEntityInstance.attributes, 'attribute', "ueFYuD7UFwB")}/>
+                            <MenuItem label={'Gender: '+getValue(trackedEntityInstance.attributes, 'attribute', "rJTMfOeOmpI")}/>
+                            <MenuItem label={'Address: '+getValue(trackedEntityInstance.attributes, 'attribute', "yWr8ngSC52h")}/>
+                            <MenuItem label={"Father's Name: "+getValue(trackedEntityInstance.attributes, 'attribute', "GLlnpfjPZ0b")}/>
+                            <MenuItem label={"Mother's Name: "+getValue(trackedEntityInstance.attributes, 'attribute', "SInsInHYbPs")}/>
+                            <MenuItem label={'Allergies: '+getValue(trackedEntityInstance.attributes, 'attribute', "l7PCs8SSrBB")}/>
+                            <MenuItem label={'Special Illness: '+getValue(trackedEntityInstance.attributes, 'attribute', "iUizvAjZyrG")}/>
+                            <MenuItem label={'Special Medication: '+getValue(trackedEntityInstance.attributes, 'attribute', "H4CHPyfC8QW")}/>
+                            <MenuItem label={'Blood Type: '+getValue(trackedEntityInstance.attributes, 'attribute', "a21KcXeip1J")}/>
                             <MenuItem label={'Created: '+trackedEntityInstance.created}/>
                         </Menu>
                     </div>

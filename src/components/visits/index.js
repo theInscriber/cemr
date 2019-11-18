@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
 import reactRouterDom from 'react-router-dom'
 const { useRouteMatch } = reactRouterDom
-import { useDataMutation, DataMutation } from '@dhis2/app-runtime'
-
+import {useDataQuery, useDataMutation, DataMutation, DataQuery } from '@dhis2/app-runtime'
+import _ from 'lodash'
 import { Button, Card, FormControl, InputField, ScrollBar, TabBar, Tab, SelectField, RadioGroup } from '@dhis2/ui-core'
 
 
 import Visit from './visit';
 import CardButton from '../card-button';
 import ModalForm from '../modal-form';
+import Grid from "@material-ui/core/Grid";
 
 const mutation = {
     resource: 'events',
@@ -17,6 +17,15 @@ const mutation = {
     data: ({ program, programStage, orgUnit, trackedEntityInstance, status, eventDate, storedBy, dataValues }) => ({
         program, programStage, orgUnit, trackedEntityInstance, status, eventDate, storedBy, dataValues
     }),
+}
+
+const query = {
+    events : {
+        resource: 'events',
+        params : ({ ou, program, trackedEntityInstance}) => ({
+            ou, program, trackedEntityInstance
+        }),
+    }
 }
 
 
@@ -54,15 +63,45 @@ const Visits = () => {
     const [duration, setDuration] = useState()
     const [serviceFee, setServiceFee] = useState()
 
-    const [mutate, { called, loading, error, data }] = useDataMutation(mutation, {
+    const [events, setEvents] = useState([])
+
+    const [mutate, {called, loading, error}] = useDataMutation(mutation, {
             onComplete: (ew) => console.log(ew),
             onError: err => console.log(err),
-            variables: {
-
-            }
+            variables: {}
         }
     )
 
+    const {data, onComplete, refetch} = useDataQuery(query, {
+        onComplete : ()=>{
+            if (error) {
+                return 'ERROR'
+            } else if (!data) {
+                return 'Loading...'
+            }else{
+                let groupedEvents = getDailyEvents(data.events.events)
+
+                setEvents(groupedEvents)
+                console.log(groupedEvents)
+            }
+            console.log('Done')
+        },
+        variables: {
+            ou: "ImspTQPwCqd",
+            program: "yGjTvvN9oLb",
+            trackedEntityInstance: JSON.parse(sessionStorage.getItem('healthPassport')).trackedEntityInstance
+        }
+    });
+
+    const getDailyEvents = (values) => {
+        return _.chain(values)
+            .groupBy((item)=>{
+                return new Date(item.eventDate).toDateString()
+            })
+            .toPairs()
+            .map(pair => _.zipObject(['date', 'values'], pair))
+            .value();
+    }
 
     const handleAddVisit = (value) => {
         setIsFormOpen(value)
@@ -150,7 +189,11 @@ const Visits = () => {
         <>
             <div style={{width: '80%', margin: 'auto'}}>
                 <CardButton onClick={handleAddVisit}/>
-                <Visit/>
+                {
+                    data?(
+                        getDailyEvents(data.events.events).map((item)=><Visit events={item}/>)
+                    ):null
+                }
             </div>
             <ModalForm
                 title='Add New Visit'

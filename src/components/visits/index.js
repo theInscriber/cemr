@@ -190,7 +190,7 @@ const Visits = () => {
             <div style={{width: '80%', margin: 'auto'}}>
                 <CardButton onClick={handleAddVisit}/>
                 {
-                    data?
+                    data ?
                     (
                         getDailyEvents(data.events.events).map((item)=><Visit key={item.date} events={item}/>)
                     )

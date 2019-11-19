@@ -90,6 +90,7 @@ const PersonInfo = () => {
                             <MenuItem label={'Created: '+trackedEntityInstance.created}/>
                         </Menu>
                     </div>
+                    
                 </div>
             </Card>
         </>

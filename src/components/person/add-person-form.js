@@ -50,8 +50,7 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
         onComplete: (ew) => console.log(ew),
         onError: err => console.log(err),
         variables: {}
-    }
-    )
+    })
 
     const createPerson = () => {
         const attributes = [
@@ -88,26 +87,28 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
         if (data) {
             setIsFormOpen(false)
 
-        return (<div
-            className="alert-bars"
-            style={{
-                bottom: 0,
-                left: 0,
-                paddingLeft: 16,
-                position: 'fixed',
-                width: '100%',
-                zIndex : 9999
-            }}
-        >
-            <AlertBar
-                duration={8000}
-                icon
-                success
-                permanent={false}
-            >
-                Patient Health Passport Added
-            </AlertBar>
-        </div>)
+            return (
+                <div
+                    className="alert-bars"
+                    style={{
+                        bottom: 0,
+                        left: 0,
+                        paddingLeft: 16,
+                        position: 'fixed',
+                        width: '100%',
+                        zIndex : 9999
+                    }}
+                >
+                    <AlertBar
+                        duration={8000}
+                        icon
+                        success
+                        permanent={false}
+                    >
+                        Patient Health Passport Added
+                    </AlertBar>
+                </div>
+                )
         }else {
             return <></>
         }
@@ -183,84 +184,7 @@ const AddPersonForm = ({isOpen, setIsFormOpen}) => {
                     </>
                 }
             >
-                {/* <TabBar fixed>
-                <Tab selected={tabs[0]} onClick={(e) => changeSelectedTab(0, e)}>
-                    Important Data
-                </Tab>
-                <Tab selected={tabs[1]} onClick={(e) => changeSelectedTab(1, e)}>
-                    Allegies
-                </Tab>
-            </TabBar>
-            <TabContent index={0} value={tabPanelValue}>
-                <div>
-                    <FormControl>
-                        <InputField
-                        label="First Name *"
-                        name="firstName"
-                        onBlur={function onBlur(){}}
-                        onChange={(e) => {setFirstName(e.target.value)}}
-                        onFocus={function onFocus(){}}
-                        type="text"
-                        value={firstName}
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="Last Name *"
-                        name="lastName"
-                        onBlur={function onBlur(){}}
-                        onChange={(e) => {setLastName(e.target.value)}}
-                        onFocus={function onFocus(){}}
-                        value={lastName}
-                        type="text"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <InputField
-                        label="National Identity *"
-                        name="nationalID"
-                        onChange={(e) => {setNatinalID(e.target.value)}}
-                        type="text"
-                        value={nationalID}
-                        />
-                    </FormControl>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="MM/dd/yyyy"
-                            margin="normal"
-                            id="date-of-birth"
-                            label="Date of Birth"
-                            onChange={(e) => setDoB(new Date(e).toISOString().split('T')[0])}
-                            value={DoB}
-                            KeyboardButtonProps={{
-                                'aria-label': 'change date',
-                            }}
-                        />
-                    </MuiPickersUtilsProvider>
-                    <RadioGroup
-                        inline
-                        label="Sex"
-                        name="sex"
-                        options={[
-                            {
-                            label: 'Male',
-                            value: 'Male'
-                            },
-                            {
-                            label: 'Female',
-                            value: 'Female'
-                            }
-                        ]}
-                        onChange={(e) => setGender(e.target.value)}
-                        value={gender}
-                    />
-                </div>
-            </TabContent>
-            <TabContent index={1} value={tabPanelValue}>
-                Tab B
-            </TabContent>*/}
+                
                 <div>
                     <FormControl>
                         <FormControl>

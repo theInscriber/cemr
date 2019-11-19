@@ -49,18 +49,20 @@ const Visit = ({events}) => {
                             value="default"
                             onClick={() => setIsContentHidden(!isContentHidden)}
                             >
-                            See More
+                            {
+                                isContentHidden ? 'See More' : 'Hide'
+                            }
                         </DropdownButton>
                     }
                 />
 
                 {
-                    !false ? 
+                    !isContentHidden ? 
 
-                    <>
+                    <div className="card-body">
                         <TabBar fixed>
                             <Tab selected={tabs[0]} onClick={(e) => changeSelectedTab(0, e)}>
-                                Genral Visist Data
+                                General Visist Data
                             </Tab>
                             <Tab selected={tabs[1]} onClick={(e) => changeSelectedTab(1, e)}>
                                 Diagnosis
@@ -229,6 +231,7 @@ const Visit = ({events}) => {
                                                         label="Duration"
                                                         name="duration"
                                                         // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                        disabled
                                                         type="text"
                                                         value={getValue(values.dataValues, 'dataElement', 'T6Bz1c8A0oV')}
                                                         />
@@ -238,6 +241,7 @@ const Visit = ({events}) => {
                                                         label="Service Fee"
                                                         name="serviceFee"
                                                         // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                        disabled
                                                         type="text"
                                                         value={getValue(values.dataValues, 'dataElement', 'qs0eg9ZXAlc')}
                                                         />
@@ -250,7 +254,7 @@ const Visit = ({events}) => {
                                 }
                             })
                         }
-                    </>:
+                    </div>:
                     <></>  
                 }
                 {/* <CardActions disableSpacing>

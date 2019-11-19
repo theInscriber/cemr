@@ -14,7 +14,7 @@ const Results = ({trackedEntityInstances}) => {
 
     const updateCurrentHealthPassport = (item) => {
         sessionStorage.setItem('healthPassport', JSON.stringify(item))
-        history.push('/health-passport')
+        history.push("/health-passport")
     }
 
     if(trackedEntityInstances){

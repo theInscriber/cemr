@@ -1,7 +1,9 @@
 import React from 'react'
 import reactRouterDom from 'react-router-dom'
 
-const { BrowserRouter, Switch, Route, Link } = reactRouterDom
+// Dereference the named export property
+// You can dereference multiple named exports in a single line
+const { HashRouter, Switch, Route, Link } = reactRouterDom
 
 import Search from './components/search'
 
@@ -14,7 +16,7 @@ const MyApp = () => {
 
     return (
         // <Provider store={store}>
-            <BrowserRouter>
+            <HashRouter>
                 <Switch>
                     <Route path="/health-passport">
                         <Container maxWidth={false} >
@@ -27,7 +29,7 @@ const MyApp = () => {
                         </Container>
                     </Route>
                 </Switch>
-            </BrowserRouter>
+            </HashRouter>
         // </Provider>
     )
 }

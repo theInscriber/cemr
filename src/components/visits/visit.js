@@ -1,14 +1,29 @@
 import React, { useState } from 'react'
 
-import { Card, DropdownButton } from '@dhis2/ui-core'
+import { Card, DropdownButton, TabBar, Tab, FormControl, InputField } from '@dhis2/ui-core'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+
+import TabContent from '../TabContent';
+
 import _ from "lodash";
 import { getValue } from '../../utils'
 
 const Visit = ({events}) => {
+    const [tabs, setSelectedTab] = useState([true, false, false, false])
+    const [tabPanelValue, setTabPanelValue] = useState(0)
+
     const [isContentHidden, setIsContentHidden] = useState(true)
+
+    const changeSelectedTab = (index, e) => {
+        e.preventDefault();
+        setSelectedTab(tabs.map((value, key) => {
+            return (key === index) ? !value : false
+        }))
+
+        setTabPanelValue(index)
+    }
 
     const getGroupedStages = (values) => {
         return _.chain(values.values)
@@ -36,37 +51,85 @@ const Visit = ({events}) => {
                             >
                             See More
                         </DropdownButton>
-                        // <IconButton
-                        // aria-label="show more"
-                        // >
-                        //     <ExpandMoreIcon />
-                        // </IconButton>
                     }
                 />
-                { !isContentHidden ?
-                    <div className="card-body" >
+
+                {
+                    !false ? 
+
+                    <>
+                        <TabBar fixed>
+                            <Tab selected={tabs[0]} onClick={(e) => changeSelectedTab(0, e)}>
+                                Genral Visist Data
+                            </Tab>
+                            <Tab selected={tabs[1]} onClick={(e) => changeSelectedTab(1, e)}>
+                                Diagnosis
+                            </Tab>
+                            <Tab selected={tabs[2]} onClick={(e) => changeSelectedTab(2, e)}>
+                                Treatment
+                            </Tab>
+                        </TabBar>
                         {
                             getGroupedStages(events).map((item)=>{
-                                console.log(item)
                                 if (item.stage === "kC9VeyqWxCY") {
                                     return (
                                         item.values.map((values)=>{
-                                                return (
-                                                    <>
-                                                        <h2>
-                                                            General Status Details
-                                                        </h2>
-                                                        <div>
-                                                            <p>Pregnancy Status : {getValue(values.dataValues, 'dataElement', 'z9Uph2K0QJ7')}</p>
-                                                            <p>HIVStatusPreviousPositive : {getValue(values.dataValues, 'dataElement', 'HN77ctoCak9')}</p>
-                                                            <p>HIVStatusPreviousNegative : {getValue(values.dataValues, 'dataElement', 'NGFVtBv66OT')}</p>
-                                                            <p>visitType : {getValue(values.dataValues, 'dataElement', 'qyfVaCtm9Pd')}</p>
-                                                            <p>Seen within 4 Weeks : {getValue(values.dataValues, 'dataElement', 'kSma9fbkS1G')}</p>
-                                                        </div>
-                                                    </>
-                                                )
+                                            return (
+                                                <TabContent index={0} value={tabPanelValue}>
+                                                    <div>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="General Status Details"
+                                                            name="generalStatusDetails"
+                                                            // onBlur={function onBlur(){}}
+                                                            // onChange={(e) => {setFirstName(e.target.value)}}
+                                                            // onFocus={function onFocus(){}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'z9Uph2K0QJ7')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="HIV Status Previous Positive"
+                                                            name="HIVStatusPreviousPositive"
+                                                            // onBlur={function onBlur(){}}
+                                                            // onChange={(e) => {setLastName(e.target.value)}}
+                                                            // onFocus={function onFocus(){}}
+                                                            value={getValue(values.dataValues, 'dataElement', 'HN77ctoCak9')}
+                                                            type="text"
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="HIV Status Previous Negative"
+                                                            name="HIVStatusPreviousNegative"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'NGFVtBv66OT')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Visit Type"
+                                                            name="visitType"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'qyfVaCtm9Pd')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Seen within 4 Weeks"
+                                                            name="seenWithin4Weekd"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'kSma9fbkS1G')}
+                                                            />
+                                                        </FormControl>
+                                                    </div>
+                                                </TabContent>
+                                            )       
                                         })
-
                                     )
                                 }
 
@@ -75,45 +138,120 @@ const Visit = ({events}) => {
                                     return (
                                         item.values.map((values)=>{
                                             return (
-                                                <>
-                                                    <h2>
-                                                        Diagnosis
-                                                    </h2>
+                                                <TabContent index={1} value={tabPanelValue}>
                                                     <div>
-                                                        <p>Test Name : {getValue(values.dataValues, 'dataElement', 'QuGfbEFkfOe')}</p>
-                                                        <p>Test Result : {getValue(values.dataValues, 'dataElement', 'AaeB7Q2WChE')}</p>
-                                                        <p>Diagnosis : {getValue(values.dataValues, 'dataElement', 'm80n7d269Vx')}</p>
-                                                        <p>Diagnosis Type : {getValue(values.dataValues, 'dataElement', 'scPtS8ut6W5')}</p>
-                                                        <p>Disease Code : {getValue(values.dataValues, 'dataElement', 'NjGQob6FQCH')}</p>
+                                                    <FormControl>
+                                                            <InputField
+                                                            label="Test Name"
+                                                            name="testName"
+                                                            // onBlur={function onBlur(){}}
+                                                            // onChange={(e) => {setFirstName(e.target.value)}}
+                                                            // onFocus={function onFocus(){}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'QuGfbEFkfOe')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Test Result"
+                                                            name="testResult"
+                                                            // onBlur={function onBlur(){}}
+                                                            // onChange={(e) => {setLastName(e.target.value)}}
+                                                            // onFocus={function onFocus(){}}
+                                                            value={getValue(values.dataValues, 'dataElement', 'AaeB7Q2WChE')}
+                                                            type="text"
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Diagnosis"
+                                                            name="diagnosis"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'm80n7d269Vx')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Diagnosis Type"
+                                                            name="diagnosisType"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'scPtS8ut6W5')}
+                                                            />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <InputField
+                                                            label="Disease Code"
+                                                            name="diseaseCode"
+                                                            // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                            type="text"
+                                                            value={getValue(values.dataValues, 'dataElement', 'NjGQob6FQCH')}
+                                                            />
+                                                        </FormControl>
                                                     </div>
-                                                </>
+                                                </TabContent>
                                             )
                                         })
                                     )
                                 }
+
                                 if( item.stage !== "Y6GcnaQGeYn" && item.stage !== "kC9VeyqWxCY"){
                                     return (
                                         item.values.map((values)=>{
                                             return (
-                                                <>
-                                                    <h2>
-                                                        Treatment
-                                                    </h2>
+                                                <TabContent index={2} value={tabPanelValue}>
                                                 <div>
-                                                    <p>Drug : {getValue(values.dataValues, 'dataElement', 'aZhyiRLA0oO')}</p>
-                                                    <p>Dosage : {getValue(values.dataValues, 'dataElement', 'OWTCuLvJbAz')}</p>
-                                                    <p>Duration : {getValue(values.dataValues, 'dataElement', 'T6Bz1c8A0oV')}</p>
-                                                    <p>Service Fee : {getValue(values.dataValues, 'dataElement', 'qs0eg9ZXAlc')}</p>
+                                                <FormControl>
+                                                        <InputField
+                                                        label="Drug"
+                                                        name="drug"
+                                                        // onBlur={function onBlur(){}}
+                                                        // onChange={(e) => {setFirstName(e.target.value)}}
+                                                        // onFocus={function onFocus(){}}
+                                                        type="text"
+                                                        value={getValue(values.dataValues, 'dataElement', 'aZhyiRLA0oO')}
+                                                        />
+                                                    </FormControl>
+                                                    <FormControl>
+                                                        <InputField
+                                                        label="Dosage"
+                                                        name="dosage"
+                                                        // onBlur={function onBlur(){}}
+                                                        // onChange={(e) => {setLastName(e.target.value)}}
+                                                        // onFocus={function onFocus(){}}
+                                                        value={getValue(values.dataValues, 'dataElement', 'OWTCuLvJbAz')}
+                                                        type="text"
+                                                        />
+                                                    </FormControl>
+                                                    <FormControl>
+                                                        <InputField
+                                                        label="Duration"
+                                                        name="duration"
+                                                        // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                        type="text"
+                                                        value={getValue(values.dataValues, 'dataElement', 'T6Bz1c8A0oV')}
+                                                        />
+                                                    </FormControl>
+                                                    <FormControl>
+                                                        <InputField
+                                                        label="Service Fee"
+                                                        name="serviceFee"
+                                                        // onChange={(e) => {setNatinalID(e.target.value)}}
+                                                        type="text"
+                                                        value={getValue(values.dataValues, 'dataElement', 'qs0eg9ZXAlc')}
+                                                        />
+                                                    </FormControl>
                                                 </div>
-                                                </>
+                                            </TabContent>
                                             )
                                         })
                                     )
                                 }
                             })
                         }
-                    </div> :
-                    <></>
+                    </>:
+                    <></>  
                 }
                 {/* <CardActions disableSpacing>
                     <IconButton

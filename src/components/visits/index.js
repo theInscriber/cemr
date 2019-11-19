@@ -190,9 +190,12 @@ const Visits = () => {
             <div style={{width: '80%', margin: 'auto'}}>
                 <CardButton onClick={handleAddVisit}/>
                 {
-                    data?(
-                        getDailyEvents(data.events.events).map((item)=><Visit events={item}/>)
-                    ):null
+                    data?
+                    (
+                        getDailyEvents(data.events.events).map((item)=><Visit key={item.date} events={item}/>)
+                    )
+                    :
+                    null
                 }
             </div>
             <ModalForm
@@ -208,7 +211,7 @@ const Visits = () => {
                             Cancel
                         </Button>
                         <Button
-                            onClick={function(){handleSubmit()}}
+                            onClick={() => handleSubmit()}
                             primary
                             type="button"
                         >

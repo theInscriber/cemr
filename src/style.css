@@ -38,6 +38,10 @@ body {
     margin-bottom: 2rem;
 }
 
+.card div{
+    box-shadow: unset !important
+}
+
 .card:hover{
     box-shadow: var(--hover-box-shadow) !important;
 }

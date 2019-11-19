@@ -2,4 +2,7 @@
 .d2/
 .env
 .idea/
+.d2
+/build
+/i18n
 

@@ -3,7 +3,7 @@ import reactRouterDom from 'react-router-dom'
 
 // Dereference the named export property
 // You can dereference multiple named exports in a single line
-const { BrowserRouter, Switch, Route, Link } = reactRouterDom
+const { HashRouter, Switch, Route, Link } = reactRouterDom
 
 // import { Provider } from 'react-redux'
 // import store from './store'
@@ -38,7 +38,7 @@ const MyApp = () => {
 
     return (
         // <Provider store={store}>
-            <BrowserRouter>
+            <HashRouter>
                 <Switch>
                     <Route path="/health-passport">
                         <Container maxWidth={false} >
@@ -51,7 +51,7 @@ const MyApp = () => {
                         </Container>
                     </Route>
                 </Switch>
-            </BrowserRouter>
+            </HashRouter>
         // </Provider>
     )
 }
